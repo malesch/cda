@@ -28,6 +28,7 @@ func App() *buffalo.App {
 			Env:         ENV,
 			SessionName: "_cda_session",
 		})
+
 		// Automatically redirect to SSL
 		app.Use(ssl.ForceSSL(secure.Options{
 			SSLRedirect:     ENV == "production",
@@ -57,6 +58,9 @@ func App() *buffalo.App {
 		app.GET("/", HomeHandler)
 
 		app.ServeFiles("/assets", assetsBox)
+
+		app.Use(models.InjectModelGlobals)
+		app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
 	}
 
 	return app

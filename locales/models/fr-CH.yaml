@@ -1,0 +1,26 @@
+user:
+  other: "Client"
+user.name:
+  other: "Nom"
+user.password:
+  other: "Mot de passe"
+user.password-confirmation:
+  other: "Mot de passe (confirmation)"
+
+locale:
+  other: "Langue"
+locale.en:
+  other: "Anglais"
+locale.fr:
+  other: "Français"
+locale.de:
+  other: "Allemand"
+locale.it:
+  other: "Italien"
+
+role:
+  other: "Rôle"
+role.user:
+  other: "User"
+role.admin:
+  other: "Administrateur"

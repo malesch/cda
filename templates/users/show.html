@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>User#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= usersPath() %>" class="btn btn-info">Back to all Users</a></li>
+  <li><a href="<%= editUserPath({ user_id: user.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= userPath({ user_id: user.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong><%= t("user.name") %></strong>: <%= user.Name %>
+</p>
+<p>
+  <strong><%= t("user.password") %></strong>: ********
+</p>
+<p>
+  <strong>Locale</strong>: <%= user.LocaleID %>
+</p>
+<p>
+  <strong>Role</strong>: <%= user.RoleID %>
+</p>
