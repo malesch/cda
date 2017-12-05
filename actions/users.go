@@ -34,6 +34,7 @@ func (v UsersResource) List(c buffalo.Context) error {
 
 	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
+	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/index.html"))
 }
@@ -159,6 +160,8 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 }
 
 func prepareSelectLists(c buffalo.Context) {
+	c.Set("locales", models.Locales)
 	c.Set("selectLocales", LocalizeSelect(c, models.SelectLocales()))
+	c.Set("roles", models.Roles)
 	c.Set("selectRoles", LocalizeSelect(c, models.SelectRoles()))
 }

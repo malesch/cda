@@ -16,8 +16,8 @@
     <%= for (user) in users { %>
       <tr>
       <td><%= user.Name %></td>
-        <td><%= user.LocaleID %></td>
-        <td><%= user.RoleID %></td>
+        <td><%= t("locale."+locales[user.LocaleID]) %></td>
+        <td><%= t("role."+roles[user.RoleID]) %></td>
         <td>
           <div class="pull-right">
             <a href="<%= userPath({ user_id: user.ID }) %>" class="btn btn-info">View</a>
