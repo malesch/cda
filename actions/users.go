@@ -19,6 +19,7 @@ func (v UsersResource) List(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
 	users := &models.Users{}
+	setUserHelpers(c)
 
 	// Paginate results. Params "page" and "per_page" control pagination.
 	// Default values are "page=1" and "per_page=20".
@@ -34,7 +35,6 @@ func (v UsersResource) List(c buffalo.Context) error {
 
 	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/index.html"))
 }
@@ -45,13 +45,13 @@ func (v UsersResource) Show(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
 	user := &models.User{}
+	setUserHelpers(c)
 
 	if err := tx.Find(user, c.Param("user_id")); err != nil {
 		return c.Error(404, err)
 	}
 
 	c.Set("user", user)
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/show.html"))
 }
@@ -60,7 +60,7 @@ func (v UsersResource) Show(c buffalo.Context) error {
 // This function is mapped to the path GET /users/new
 func (v UsersResource) New(c buffalo.Context) error {
 	c.Set("user", &models.User{})
-	prepareSelectLists(c)
+	setUserHelpers(c)
 
 	return c.Render(200, r.HTML("users/new.html"))
 }
@@ -68,6 +68,7 @@ func (v UsersResource) New(c buffalo.Context) error {
 // Create adds a User to the DB. This function is mapped to the path POST /users
 func (v UsersResource) Create(c buffalo.Context) error {
 	user := &models.User{}
+	setUserHelpers(c)
 
 	if err := c.Bind(user); err != nil {
 		return errors.WithStack(err)
@@ -98,13 +99,13 @@ func (v UsersResource) Edit(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
 	user := &models.User{}
+	setUserHelpers(c)
 
 	if err := tx.Find(user, c.Param("user_id")); err != nil {
 		return c.Error(404, err)
 	}
 
 	c.Set("user", user)
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/edit.html"))
 }
@@ -114,6 +115,7 @@ func (v UsersResource) Update(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
 	user := &models.User{}
+	setUserHelpers(c)
 
 	if err := tx.Find(user, c.Param("user_id")); err != nil {
 		return c.Error(404, err)
@@ -145,6 +147,7 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
 	user := &models.User{}
+	setUserHelpers(c)
 
 	if err := tx.Find(user, c.Param("user_id")); err != nil {
 		return c.Error(404, err)
@@ -159,9 +162,13 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 	return c.Redirect(302, "/users")
 }
 
-func prepareSelectLists(c buffalo.Context) {
-	c.Set("locales", models.Locales)
+func setUserHelpers(c buffalo.Context) {
+	c.Set("locLocaleID", func(id int) string {
+		return T.Translate(c, "locale."+models.Locales[id])
+	})
+	c.Set("locRoleID", func(id int) string {
+		return T.Translate(c, "role."+models.Roles[id])
+	})
 	c.Set("selectLocales", LocalizeSelect(c, models.SelectLocales()))
-	c.Set("roles", models.Roles)
 	c.Set("selectRoles", LocalizeSelect(c, models.SelectRoles()))
 }

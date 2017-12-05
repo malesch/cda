@@ -15,8 +15,8 @@
   <strong><%= t("user.password") %></strong>: ********
 </p>
 <p>
-  <strong>Locale</strong>: <%= t("locale."+locales[user.LocaleID]) %>
+  <strong>Locale</strong>: <%= locLocaleID(user.LocaleID) %>
 </p>
 <p>
-  <strong>Role</strong>: <%= t("role."+roles[user.RoleID]) %>
+  <strong>Role</strong>: <%= locRoleID(user.RoleID) %>
 </p>
