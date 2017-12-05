@@ -29,17 +29,6 @@ func (v UsersResource) List(c buffalo.Context) error {
 		return errors.WithStack(err)
 	}
 
-	// users2 := &[]struct {
-	// 	models.User
-	// 	Locale string
-	// 	Role   string
-	// }{}
-
-	// for i, user := range *users2 {
-	// 	(*users)[i].Locale = models.LocaleName(user.LocaleID)
-	// 	(*users)[i].Role = models.RoleName(user.RoleID)
-	// }
-
 	// Make Users available inside the html template
 	c.Set("users", users)
 
@@ -61,6 +50,7 @@ func (v UsersResource) Show(c buffalo.Context) error {
 	}
 
 	c.Set("user", user)
+	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/show.html"))
 }
@@ -69,12 +59,12 @@ func (v UsersResource) Show(c buffalo.Context) error {
 // This function is mapped to the path GET /users/new
 func (v UsersResource) New(c buffalo.Context) error {
 	c.Set("user", &models.User{})
+	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/new.html"))
 }
 
-// Create adds a User to the DB. This function is mapped to the
-// path POST /users
+// Create adds a User to the DB. This function is mapped to the path POST /users
 func (v UsersResource) Create(c buffalo.Context) error {
 	user := &models.User{}
 
@@ -93,8 +83,7 @@ func (v UsersResource) Create(c buffalo.Context) error {
 		c.Set("user", user)
 		c.Set("errors", verrs)
 
-		// Render again the new.html template that the user can
-		// correct the input.
+		// Render again the new.html template that the user can correct the input.
 		return c.Render(422, r.HTML("users/new.html"))
 	}
 
@@ -103,8 +92,7 @@ func (v UsersResource) Create(c buffalo.Context) error {
 	return c.Redirect(302, "/users/%s", user.ID)
 }
 
-// Edit renders a edit form for a User. This function is
-// mapped to the path GET /users/{user_id}/edit
+// Edit renders a edit form for a User. This function is mapped to the path GET /users/{user_id}/edit
 func (v UsersResource) Edit(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
@@ -115,12 +103,12 @@ func (v UsersResource) Edit(c buffalo.Context) error {
 	}
 
 	c.Set("user", user)
+	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/edit.html"))
 }
 
-// Update changes a User in the DB. This function is mapped to
-// the path PUT /users/{user_id}
+// Update changes a User in the DB. This function is mapped to the path PUT /users/{user_id}
 func (v UsersResource) Update(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
@@ -151,8 +139,7 @@ func (v UsersResource) Update(c buffalo.Context) error {
 	return c.Redirect(302, "/users/%s", user.ID)
 }
 
-// Destroy deletes a User from the DB. This function is mapped
-// to the path DELETE /users/{user_id}
+// Destroy deletes a User from the DB. This function is mapped to the path DELETE /users/{user_id}
 func (v UsersResource) Destroy(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
@@ -169,4 +156,9 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 	c.Flash().Add("success", "User was destroyed successfully")
 
 	return c.Redirect(302, "/users")
+}
+
+func prepareSelectLists(c buffalo.Context) {
+	c.Set("selectLocales", LocalizeSelect(c, models.SelectLocales()))
+	c.Set("selectRoles", LocalizeSelect(c, models.SelectRoles()))
 }

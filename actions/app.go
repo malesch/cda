@@ -59,7 +59,6 @@ func App() *buffalo.App {
 
 		app.ServeFiles("/assets", assetsBox)
 
-		app.Use(models.InjectModelGlobals)
 		app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
 	}
 
