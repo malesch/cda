@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Media</h1>
+</div>
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= newMediaPath() %>" class="btn btn-primary">Create New Medium</a></li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+  <th>Type</th>
+    <th>Url</th>
+    <th>Size</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (medium) in media { %>
+      <tr>
+      <td><%= medium.Type %></td>
+        <td><%= medium.Url %></td>
+        <td><%= medium.Size %></td>
+        <td>
+          <div class="pull-right">
+            <a href="<%= mediumPath({ medium_id: medium.ID }) %>" class="btn btn-info">View</a>
+            <a href="<%= editMediumPath({ medium_id: medium.ID }) %>" class="btn btn-warning">Edit</a>
+            <a href="<%= mediumPath({ medium_id: medium.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>

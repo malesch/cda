@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Medium#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= mediaPath() %>" class="btn btn-info">Back to all Media</a></li>
+  <li><a href="<%= editMediumPath({ medium_id: medium.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= mediumPath({ medium_id: medium.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>Name</strong>: <%= medium.Name %>
+</p>
+<p>
+  <strong>Type</strong>: <%= medium.Type %>
+</p>
+<p>
+  <strong>Url</strong>: <%= medium.Url %>
+</p>
+<p>
+  <strong>Size</strong>: <%= medium.Size %>
+</p>

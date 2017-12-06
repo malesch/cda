@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>Edit Medium</h1>
+</div>
+
+<%= form_for(medium, {action: mediumPath({ medium_id: medium.ID }), method: "PUT"}) { %>
+  <%= partial("media/form.html") %>
+  <a href="<%= mediumPath({ medium_id: medium.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

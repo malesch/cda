@@ -1,0 +1,6 @@
+- id: "medium.created.success"
+  translation: "Medium was successfully created."
+- id: "medium.updated.success"
+  translation: "Medium was successfully updated."
+- id: "medium.destroyed.success"
+  translation: "Medium was successfully destroyed."
