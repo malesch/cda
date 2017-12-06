@@ -1,34 +1,41 @@
-# Welcome to Buffalo!
+# CdA - Centre d’ambiance frontend
 
-Thank you for choosing Buffalo for your web development needs.
+This application is the frontend for the CdA controller unit.
 
 ## Database Setup
 
-It looks like you chose to set up your application using a sqlite3 database! Fantastic!
-
-The first thing you need to do is open up the "database.yml" file and edit it to use the correct usernames, passwords, hosts, etc... that are appropriate for your environment.
-
-You will also need to make sure that **you** start/install the database of your choice. Buffalo **won't** install and start sqlite3 for you.
+The application is backed by a SQLite3 database. Edit "database.yml" to use the correct database file location.
 
 ### Create Your Databases
 
-Ok, so you've edited the "database.yml" file and started sqlite3, now Buffalo can create the databases in that file for you:
+Create all databases (developement, test and production) with
 
-	$ buffalo db create -a
+	$ buffalo db create -a -d
+
+and run all migrations
+
+	$ buffalo db migrate
+
+and seed database with defaults
+
+	$ buffalo task db:seed
+
+Alternatively 
+
+	$ buffalo setup -d
+
+can be executed what runs all three steps above and additionally setups the asset pipeline (`npm install` or `yarn install`) and runs all tests. 
+
+
 ## Starting the Application
 
-Buffalo ships with a command that will watch your application and automatically rebuild the Go binary and any assets for you. To do that run the "buffalo dev" command:
+Start the dev server with
 
 	$ buffalo dev
 
-If you point your browser to [http://127.0.0.1:3000](http://127.0.0.1:3000) you should see a "Welcome to Buffalo!" page.
+and access the application at [http://127.0.0.1:3000](http://127.0.0.1:3000).
 
-**Congratulations!** You now have your Buffalo application up and running.
+Starting the server on a specific port:
 
-## What Next?
-
-We recommend you heading over to [http://gobuffalo.io](http://gobuffalo.io) and reviewing all of the great documentation there.
-
-Good luck!
-
-[Powered by Buffalo](http://gobuffalo.io)
+	$ PORT=3001 buffalo dev
+	
