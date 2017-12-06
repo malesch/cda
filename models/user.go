@@ -61,3 +61,16 @@ func (u *User) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
 func (u *User) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.NewErrors(), nil
 }
+
+// BeforeSave is called before storing the entity to the database and makes sure that
+// the password hash is updated based on the (confirmed) password value
+func (u *User) BeforeSave(tx *pop.Connection) error {
+	if u.Password != "" {
+		ph, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+		if err != nil {
+			return errors.WithStack(err)
+		}
+		u.PasswordHash = string(ph)
+	}
+	return nil
+}
