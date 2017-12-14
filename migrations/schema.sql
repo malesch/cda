@@ -11,3 +11,12 @@ CREATE TABLE "users" (
 "created_at" DATETIME NOT NULL,
 "updated_at" DATETIME NOT NULL
 );
+CREATE TABLE "media" (
+"id" TEXT PRIMARY KEY,
+"name" text,
+"type" TEXT NOT NULL,
+"url" TEXT NOT NULL,
+"size" integer NOT NULL,
+"created_at" DATETIME NOT NULL,
+"updated_at" DATETIME NOT NULL
+);

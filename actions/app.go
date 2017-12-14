@@ -61,6 +61,8 @@ func App() *buffalo.App {
 
 		app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
 		app.Resource("/media", MediaResource{&buffalo.BaseResource{}})
+
+		app.POST("/media/upload", MediaUploadHandler)
 	}
 
 	return app

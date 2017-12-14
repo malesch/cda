@@ -1,5 +1,23 @@
-<%= f.TextArea("Name", {rows: 10}) %>
+<%= f.InputTag("Name") %>
+<!--
 <%= f.InputTag("Type") %>
 <%= f.InputTag("Url") %>
 <%= f.InputTag("Size") %>
+-->
+<div class="form-group">
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Select medium file</span>
+        <input id="fileupload" type="file" name="file" data-url="/media/upload">
+    </span>
+    <br>
+    <br>
+    <!-- The global progress bar -->
+    <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <!-- The container for the uploaded files -->
+    <div id="files" class="files"></div>
+    <br>
+</div>
 <button class="btn btn-success" role="submit">Save</button>

@@ -1,6 +1,9 @@
 package actions
 
 import (
+	"io"
+	"os"
+
 	"github.com/cdacontrol/cda/models"
 	"github.com/gobuffalo/buffalo"
 	"github.com/markbates/pop"
@@ -201,4 +204,27 @@ func (v MediaResource) Destroy(c buffalo.Context) error {
 
 	// Redirect to the media index page
 	return c.Redirect(302, "/media")
+}
+
+// BEGIN LAB SECTION
+
+// MediaUploadHandler receives an uploaded media resource
+func MediaUploadHandler(c buffalo.Context) error {
+	c.Request().ParseMultipartForm(0)
+	Form := c.Request().MultipartForm
+	filename := Form.File["file"][0].Filename
+	file, _ := Form.File["file"][0].Open()
+	//contentFile, _ := ioutil.ReadAll(file)
+
+	outfile, err := os.Create("/Users/malex/Desktop/" + filename)
+	if err != nil {
+		return c.Error(400, errors.New("Error saving file: "+err.Error()))
+	}
+
+	_, err = io.Copy(outfile, file)
+	if err != nil {
+		return c.Error(400, errors.New("Error saving file: "+err.Error()))
+	}
+
+	return c.Render(200, r.JSON("{'result': 'OK'}"))
 }
