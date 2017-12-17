@@ -30,24 +30,17 @@ type MediaResource struct {
 // List gets all Media. This function is mapped to the path
 // GET /media
 func (v MediaResource) List(c buffalo.Context) error {
-	// Get the DB connection from the context
 	tx := c.Value("tx").(*pop.Connection)
 
 	media := &models.Media{}
 
-	// Paginate results. Params "page" and "per_page" control pagination.
-	// Default values are "page=1" and "per_page=20".
 	q := tx.PaginateFromParams(c.Params())
 
-	// Retrieve all Media from the DB
 	if err := q.All(media); err != nil {
 		return errors.WithStack(err)
 	}
 
-	// Make Media available inside the html template
 	c.Set("media", media)
-
-	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
 
 	return c.Render(200, r.HTML("media/index.html"))
@@ -56,18 +49,14 @@ func (v MediaResource) List(c buffalo.Context) error {
 // Show gets the data for one Medium. This function is mapped to
 // the path GET /media/{medium_id}
 func (v MediaResource) Show(c buffalo.Context) error {
-	// Get the DB connection from the context
 	tx := c.Value("tx").(*pop.Connection)
 
-	// Allocate an empty Medium
 	medium := &models.Medium{}
 
-	// To find the Medium the parameter medium_id is used.
 	if err := tx.Find(medium, c.Param("medium_id")); err != nil {
 		return c.Error(404, err)
 	}
 
-	// Make medium available inside the html template
 	c.Set("medium", medium)
 
 	return c.Render(200, r.HTML("media/show.html"))
@@ -76,7 +65,6 @@ func (v MediaResource) Show(c buffalo.Context) error {
 // New renders the form for creating a new Medium.
 // This function is mapped to the path GET /media/new
 func (v MediaResource) New(c buffalo.Context) error {
-	// Make medium available inside the html template
 	c.Set("medium", &models.Medium{})
 
 	return c.Render(200, r.HTML("media/new.html"))
@@ -85,56 +73,43 @@ func (v MediaResource) New(c buffalo.Context) error {
 // Create adds a Medium to the DB. This function is mapped to the
 // path POST /media
 func (v MediaResource) Create(c buffalo.Context) error {
-	// Allocate an empty Medium
 	medium := &models.Medium{}
 
-	// Bind medium to the html form elements
 	if err := c.Bind(medium); err != nil {
 		return errors.WithStack(err)
 	}
 
-	// Get the DB connection from the context
 	tx := c.Value("tx").(*pop.Connection)
 
-	// Validate the data from the html form
 	verrs, err := tx.ValidateAndCreate(medium)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
 	if verrs.HasAny() {
-		// Make medium available inside the html template
 		c.Set("medium", medium)
 
-		// Make the errors available inside the html template
 		c.Set("errors", verrs)
 
-		// Render again the new.html template that the user can
-		// correct the input.
 		return c.Render(422, r.HTML("media/new.html"))
 	}
 
-	// If there are no errors set a success message
 	c.Flash().Add("success", "Medium was created successfully")
 
-	// and redirect to the media index page
 	return c.Redirect(302, "/media/%s", medium.ID)
 }
 
 // Edit renders a edit form for a Medium. This function is
 // mapped to the path GET /media/{medium_id}/edit
 func (v MediaResource) Edit(c buffalo.Context) error {
-	// Get the DB connection from the context
 	tx := c.Value("tx").(*pop.Connection)
 
-	// Allocate an empty Medium
 	medium := &models.Medium{}
 
 	if err := tx.Find(medium, c.Param("medium_id")); err != nil {
 		return c.Error(404, err)
 	}
 
-	// Make medium available inside the html template
 	c.Set("medium", medium)
 	return c.Render(200, r.HTML("media/edit.html"))
 }
@@ -142,17 +117,14 @@ func (v MediaResource) Edit(c buffalo.Context) error {
 // Update changes a Medium in the DB. This function is mapped to
 // the path PUT /media/{medium_id}
 func (v MediaResource) Update(c buffalo.Context) error {
-	// Get the DB connection from the context
 	tx := c.Value("tx").(*pop.Connection)
 
-	// Allocate an empty Medium
 	medium := &models.Medium{}
 
 	if err := tx.Find(medium, c.Param("medium_id")); err != nil {
 		return c.Error(404, err)
 	}
 
-	// Bind Medium to the html form elements
 	if err := c.Bind(medium); err != nil {
 		return errors.WithStack(err)
 	}
@@ -163,34 +135,25 @@ func (v MediaResource) Update(c buffalo.Context) error {
 	}
 
 	if verrs.HasAny() {
-		// Make medium available inside the html template
 		c.Set("medium", medium)
 
-		// Make the errors available inside the html template
 		c.Set("errors", verrs)
 
-		// Render again the edit.html template that the user can
-		// correct the input.
 		return c.Render(422, r.HTML("media/edit.html"))
 	}
 
-	// If there are no errors set a success message
 	c.Flash().Add("success", "Medium was updated successfully")
 
-	// and redirect to the media index page
 	return c.Redirect(302, "/media/%s", medium.ID)
 }
 
 // Destroy deletes a Medium from the DB. This function is mapped
 // to the path DELETE /media/{medium_id}
 func (v MediaResource) Destroy(c buffalo.Context) error {
-	// Get the DB connection from the context
 	tx := c.Value("tx").(*pop.Connection)
 
-	// Allocate an empty Medium
 	medium := &models.Medium{}
 
-	// To find the Medium the parameter medium_id is used.
 	if err := tx.Find(medium, c.Param("medium_id")); err != nil {
 		return c.Error(404, err)
 	}
@@ -199,10 +162,8 @@ func (v MediaResource) Destroy(c buffalo.Context) error {
 		return errors.WithStack(err)
 	}
 
-	// If there are no errors set a flash message
 	c.Flash().Add("success", "Medium was destroyed successfully")
 
-	// Redirect to the media index page
 	return c.Redirect(302, "/media")
 }
 

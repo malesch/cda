@@ -17,7 +17,6 @@ type Medium struct {
 	UpdatedAt time.Time    `json:"updated_at" db:"updated_at"`
 	Name      nulls.String `json:"name" db:"name"`
 	Type      string       `json:"type" db:"type"`
-	URL       string       `json:"url" db:"url"`
 	Size      int          `json:"size" db:"size"`
 }
 
@@ -41,7 +40,6 @@ func (m Media) String() string {
 func (m *Medium) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
 		&validators.StringIsPresent{Field: m.Type, Name: "Type"},
-		&validators.StringIsPresent{Field: m.URL, Name: "Url"},
 		&validators.IntIsPresent{Field: m.Size, Name: "Size"},
 	), nil
 }

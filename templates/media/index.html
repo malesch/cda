@@ -8,15 +8,13 @@
 <table class="table table-striped">
   <thead>
   <th>Type</th>
-    <th>Url</th>
     <th>Size</th>
     <th>&nbsp;</th>
   </thead>
   <tbody>
     <%= for (medium) in media { %>
       <tr>
-      <td><%= medium.Type %></td>
-        <td><%= medium.Url %></td>
+        <td><%= medium.Type %></td>
         <td><%= medium.Size %></td>
         <td>
           <div class="pull-right">
