@@ -8,11 +8,19 @@ $(() => {
     $('#fileupload').fileupload({
         dataType: 'json',
         autoUpload: true,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        maxFileSize: 999000,
+        //acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        //maxFileSize: 999000,
+        // change: function (e, data) {
+        //     console.log(data.files[0].name)
+        //     $('#progress label').text(data.files[0].name)
+        // },
         done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo('#files');
+            console.log("DONE")
+            $.each(data.files, function (index, file) {
+                console.log("done: "+file.name)
+                $('<p/>').text(file.name).appendTo('#uploaded-file');
+                $('#medium-FileID').attr("value", data.result.fileID);
+                $('#medium-FileName').attr("value", data.result.fileName);
             });
         },
         progressall: function (e, data) {

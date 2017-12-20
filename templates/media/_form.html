@@ -1,4 +1,6 @@
 <%= f.InputTag("Name") %>
+<%= f.InputTag("FileID", {type: "hidden", hide_label: true}) %>
+<%= f.InputTag("FileName", {type: "hidden", hide_label: true}) %>
 <!--
 <%= f.InputTag("Type") %>
 <%= f.InputTag("Size") %>
@@ -16,7 +18,7 @@
         <div class="progress-bar progress-bar-success"></div>
     </div>
     <!-- The container for the uploaded files -->
-    <div id="files" class="files"></div>
+    <div id="uploaded-file" class="files"></div>
     <br>
 </div>
 <button class="btn btn-success" role="submit">Save</button>
