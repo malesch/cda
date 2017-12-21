@@ -1,0 +1,6 @@
+create_table("systems", func(t) {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("ip_address", "string", {})
+	t.Column("xbee_gateway_id", "integer", {})
+	t.Column("xbee_channel", "integer", {})
+})

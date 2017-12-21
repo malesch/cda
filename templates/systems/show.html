@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>System#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= systemsPath() %>" class="btn btn-info">Back to all Systems</a></li>
+  <li><a href="<%= editSystemPath({ system_id: system.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= systemPath({ system_id: system.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>IpAddress</strong>: <%= system.IpAddress %>
+</p>
+<p>
+  <strong>XbeeGatewayID</strong>: <%= system.XbeeGatewayID %>
+</p>
+<p>
+  <strong>XbeeChannel</strong>: <%= system.XbeeChannel %>
+</p>
