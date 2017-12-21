@@ -1,0 +1,6 @@
+- id: "system.created.success"
+  translation: "System was successfully created."
+- id: "system.updated.success"
+  translation: "System was successfully updated."
+- id: "system.destroyed.success"
+  translation: "System was successfully destroyed."
