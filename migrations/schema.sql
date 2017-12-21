@@ -11,3 +11,11 @@ CREATE TABLE "users" (
 "created_at" DATETIME NOT NULL,
 "updated_at" DATETIME NOT NULL
 );
+CREATE TABLE "systems" (
+"id" TEXT PRIMARY KEY,
+"ip_address" TEXT NOT NULL,
+"xbee_gateway_id" integer NOT NULL,
+"xbee_channel" integer NOT NULL,
+"created_at" DATETIME NOT NULL,
+"updated_at" DATETIME NOT NULL
+);

@@ -33,6 +33,10 @@ module.exports = {
       [{
         from: "./assets",
         to: ""
+      },{
+        from: "./node_modules/admin-lte/dist/img/**",
+        to: "images",
+        flatten: true
       }], {
         copyUnmodified: true,
         ignore: ["css/**", "js/**"]
@@ -61,11 +65,15 @@ module.exports = {
             options: {
               sourceMap: true
             }
-          },
+          }
+          ,
             {
               loader: "sass-loader",
               options: {
-                sourceMap: true
+                sourceMap: true,
+                // includePaths: [
+                //   path.resolve(__dirname, "./node_modules/compass-mixins/lib")
+                // ] 
               }
             }
           ]
@@ -94,6 +102,10 @@ module.exports = {
       {
         test: require.resolve("jquery"),
         use: "expose-loader?jQuery!expose-loader?$"
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: "file-loader"
       }
     ]
   }

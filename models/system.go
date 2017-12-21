@@ -39,7 +39,7 @@ func (s Systems) String() string {
 // This method is not required and may be deleted.
 func (s *System) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
-		&validators.StringIsPresent{Field: s.IpAddress, Name: "IpAddress"},
+		&validators.StringIsPresent{Field: s.IPAddress, Name: "IPAddress"},
 		&validators.IntIsPresent{Field: s.XbeeGatewayID, Name: "XbeeGatewayID"},
 		&validators.IntIsPresent{Field: s.XbeeChannel, Name: "XbeeChannel"},
 	), nil
