@@ -2,7 +2,10 @@
   <h1>Edit System</h1>
 </div>
 
-<%= form_for(system, {action: systemPath({ system_id: system.ID }), method: "PUT"}) { %>
-  <%= partial("systems/form.html") %>
-  <a href="<%= systemPath({ system_id: system.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<%= form_for(system, {action: systemPath({ system_id: 0 }), method: "PUT"}) { %>
+  <%= f.InputTag("IPAddress") %>
+  <%= f.InputTag("XbeeGatewayID") %>
+  <%= f.InputTag("XbeeChannel") %>
+  <button class="btn btn-success" role="submit">Save</button>
+  <a href="/" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
 <% } %>

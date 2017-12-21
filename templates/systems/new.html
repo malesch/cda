@@ -1,8 +1,0 @@
-<div class="page-header">
-  <h1>New System</h1>
-</div>
-
-<%= form_for(system, {action: systemsPath(), method: "POST"}) { %>
-  <%= partial("systems/form.html") %>
-  <a href="<%= systemsPath() %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
-<% } %>
