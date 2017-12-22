@@ -59,6 +59,10 @@ func App() *buffalo.App {
 		app.Use(T.Middleware())
 
 		app.GET("/", HomeHandler)
+		app.GET("/login", AuthNew)
+		app.POST("/login", AuthCreate)
+		app.DELETE("/logout", AuthDestroy)
+		app.GET("/logout", AuthDestroy)
 
 		app.ServeFiles("/assets", assetsBox)
 
