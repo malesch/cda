@@ -1,0 +1,6 @@
+- id: "prop.created.success"
+  translation: "Prop was successfully created."
+- id: "prop.updated.success"
+  translation: "Prop was successfully updated."
+- id: "prop.destroyed.success"
+  translation: "Prop was successfully destroyed."

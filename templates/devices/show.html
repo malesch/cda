@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Device#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= devicesPath() %>" class="btn btn-info">Back to all Devices</a></li>
+  <li><a href="<%= editDevicePath({ device_id: device.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= devicePath({ device_id: device.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>Name</strong>: <%= device.Name %>
+</p>
+<p>
+  <strong>Type</strong>: <%= device.Type %>
+</p>

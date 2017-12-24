@@ -65,6 +65,10 @@ func App() *buffalo.App {
 		app.Resource("/media", MediaResource{&buffalo.BaseResource{}})
 
 		app.POST("/media/upload", MediaUploadHandler)
+		app.Resource("/scenes", ScenesResource{&buffalo.BaseResource{}})
+		app.Resource("/devices", DevicesResource{&buffalo.BaseResource{}})
+		app.Resource("/events", EventsResource{&buffalo.BaseResource{}})
+		app.Resource("/props", PropsResource{&buffalo.BaseResource{}})
 	}
 
 	return app

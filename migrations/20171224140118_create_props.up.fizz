@@ -1,0 +1,7 @@
+create_table("props", func(t) {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("eventID", "uuid", {})
+	t.Column("name", "string", {})
+	t.Column("value", "string", {})
+	t.Column("type", "string", {})
+})

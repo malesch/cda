@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>New Scene</h1>
+</div>
+
+<%= form_for(scene, {action: scenesPath(), method: "POST"}) { %>
+  <%= partial("scenes/form.html") %>
+  <a href="<%= scenesPath() %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

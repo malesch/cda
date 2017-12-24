@@ -1,0 +1,7 @@
+create_table("events", func(t) {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("sceneID", "uuid", {})
+	t.Column("deviceID", "uuid", {})
+	t.Column("start", "integer", {})
+	t.Column("end", "integer", {})
+})

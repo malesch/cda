@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>Edit Prop</h1>
+</div>
+
+<%= form_for(prop, {action: propPath({ prop_id: prop.ID }), method: "PUT"}) { %>
+  <%= partial("props/form.html") %>
+  <a href="<%= propPath({ prop_id: prop.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>
