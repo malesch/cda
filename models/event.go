@@ -10,14 +10,16 @@ import (
 	"github.com/satori/go.uuid"
 )
 
+// Event returns the data describing an event
 type Event struct {
-	ID        uuid.UUID `json:"id" db:"id"`
-	CreatedAt time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
-	SceneID   uuid.UUID `json:"sceneID" db:"sceneID"`
-	DeviceID  uuid.UUID `json:"deviceID" db:"deviceID"`
+	ID        uuid.UUID `json:"-" db:"id"`
+	CreatedAt time.Time `json:"-" db:"created_at"`
+	UpdatedAt time.Time `json:"-" db:"updated_at"`
+	SceneID   uuid.UUID `json:"-" db:"sceneID"`
+	DeviceID  uuid.UUID `json:"-" db:"deviceID"`
 	Start     int       `json:"start" db:"start"`
 	End       int       `json:"end" db:"end"`
+	Props     Props     `json:"props" db:"-"`
 }
 
 // String is not required by pop and may be deleted

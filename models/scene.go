@@ -7,15 +7,16 @@ import (
 	"github.com/markbates/pop"
 	"github.com/markbates/validate"
 	"github.com/markbates/validate/validators"
+	"github.com/pkg/errors"
 	"github.com/satori/go.uuid"
 )
 
 type Scene struct {
-	ID        uuid.UUID `json:"id" db:"id"`
-	CreatedAt time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
+	ID        uuid.UUID `json:"-" db:"id"`
+	CreatedAt time.Time `json:"-" db:"created_at"`
+	UpdatedAt time.Time `json:"-" db:"updated_at"`
 	Name      string    `json:"name" db:"name"`
-	MediumID  uuid.UUID `json:"mediumID" db:"mediumID"`
+	MediumID  uuid.UUID `json:"-" db:"mediumID"`
 }
 
 // String is not required by pop and may be deleted
@@ -51,4 +52,33 @@ func (s *Scene) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
 // This method is not required and may be deleted.
 func (s *Scene) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.NewErrors(), nil
+}
+
+// SceneEvents returns the scene events as a map events keyed by devices
+func SceneEvents(tx *pop.Connection, scene *Scene) (map[Device][]Event, error) {
+	events := &[]Event{}
+
+	err := tx.Where("sceneID=?", scene.ID).All(events)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	res := make(map[Device][]Event)
+	for _, event := range *events {
+		device := &Device{ID: event.DeviceID}
+		err := tx.First(device)
+		if err != nil {
+			return nil, errors.WithStack(err)
+		}
+
+		props := Props{}
+		err = tx.Where("eventID=?", event.ID).All(&props)
+		if err != nil {
+			return nil, errors.WithStack(err)
+		}
+		event.Props = props
+		res[*device] = append(res[*device], event)
+	}
+
+	return res, nil
 }
