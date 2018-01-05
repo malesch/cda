@@ -69,6 +69,9 @@ func App() *buffalo.App {
 		app.Resource("/devices", DevicesResource{&buffalo.BaseResource{}})
 		app.Resource("/events", EventsResource{&buffalo.BaseResource{}})
 		app.Resource("/props", PropsResource{&buffalo.BaseResource{}})
+
+		app.GET("/scene/editor/{scene_id}", SceneEditorHandler)
+		app.GET("/scene/data/{scene_id}", SceneDataHandler)
 	}
 
 	return app

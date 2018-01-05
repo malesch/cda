@@ -56,17 +56,20 @@ func (s *Scene) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 
 // SceneEvents returns the scene events as a map events keyed by devices
 func SceneEvents(tx *pop.Connection, scene *Scene) (map[Device][]Event, error) {
-	events := &[]Event{}
+	events := []Event{}
 
-	err := tx.Where("sceneID=?", scene.ID).All(events)
+	err := tx.Where("sceneID=?", scene.ID).All(&events)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
 
+	// TODO:
+	// HACK solution for stripping away attributes to be ignored for key
+	// comparison e.g. CreatedAt or UpdatedAt. Better or idiomatic solution?
 	res := make(map[Device][]Event)
-	for _, event := range *events {
-		device := &Device{ID: event.DeviceID}
-		err := tx.First(device)
+	for _, event := range events {
+		device := Device{}
+		err := tx.Find(&device, event.DeviceID)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
@@ -77,8 +80,13 @@ func SceneEvents(tx *pop.Connection, scene *Scene) (map[Device][]Event, error) {
 			return nil, errors.WithStack(err)
 		}
 		event.Props = props
-		res[*device] = append(res[*device], event)
-	}
 
+		deviceKey := Device{
+			ID:   device.ID,
+			Name: device.Name,
+			Type: device.Type,
+		}
+		res[deviceKey] = append(res[deviceKey], event)
+	}
 	return res, nil
 }

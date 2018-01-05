@@ -1,0 +1,90 @@
+<div id="scene-editor" class="ui container">
+
+    <div id="duft-edit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Duft editieren</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="group" value="">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" size="30" name="title" class="form-control input-lg" placeholder="Titel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" size="30" name="description" class="form-control input-lg" placeholder="Beschreibung">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="time" size="30" name="start" class="form-control input-lg" placeholder="Von...">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="time" size="30" name="end" class="form-control input-lg" placeholder="To...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                <i class="fa fa-circle fa-4x" style="color:#FF0000"></i>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                <i class="fa fa-circle fa-4x" style="color: blue"></i>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option2">
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                <i class="fa fa-circle fa-4x" style="color:green"></i>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option3">
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                <i class="fa fa-circle fa-4x" style="color:yellow"></i>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option4">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUpdateAction(); return true;">Speichern</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline"></div>
+
+    <p>
+        <div class="row">
+            <div class="col-md-2">
+                <!-- <i class="fa fa-plus-square-o"></i> -->
+                <select class="form-control">
+                    <option>Hinzufügen...</option>
+                    <option>LED 1</option>
+                    <option>LED 2</option>
+                    <option>Duft</option>
+                    <option>Video</option>
+                </select>
+            </div>
+        </div>
+    </p>
+</div>

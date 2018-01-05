@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Buffalo - Cda</title>
+    <%= stylesheetTag("vis-timeline-graph2d.min.css") %>
+    <%= stylesheetTag("application.css") %>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="<%= authenticity_token %>" />
+  </head>
+  <body>
+
+    <div class="container">
+      <%= partial("flash.html") %>
+      <%= yield %>
+    </div>
+
+    <%= javascriptTag("application.js") %>
+    <%= javascriptTag("vis-timeline-graph2d.min.js") %>
+    <%= javascriptTag("scene-editor.js") %>
+    <script>
+      $(document).ready(function () {
+        var container = $('#scene-editor .timeline').get(0);
+        var editor = new SceneEditor(container, "<%= scene_id %>");
+        editor.init();
+      });
+    </script>
+  </body>
+</html>

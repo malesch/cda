@@ -12,11 +12,11 @@ import (
 
 // Event returns the data describing an event
 type Event struct {
-	ID        uuid.UUID `json:"-" db:"id"`
+	ID        uuid.UUID `json:"id" db:"id"`
 	CreatedAt time.Time `json:"-" db:"created_at"`
 	UpdatedAt time.Time `json:"-" db:"updated_at"`
 	SceneID   uuid.UUID `json:"-" db:"sceneID"`
-	DeviceID  uuid.UUID `json:"-" db:"deviceID"`
+	DeviceID  uuid.UUID `json:"device_id" db:"deviceID"`
 	Start     int       `json:"start" db:"start"`
 	End       int       `json:"end" db:"end"`
 	Props     Props     `json:"props" db:"-"`
