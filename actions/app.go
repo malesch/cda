@@ -64,10 +64,10 @@ func App() *buffalo.App {
 		app.DELETE("/logout", AuthDestroy)
 		app.GET("/logout", AuthDestroy)
 
-		app.ServeFiles("/assets", assetsBox)
-
 		app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
 		app.Resource("/systems", SystemsResource{&buffalo.BaseResource{}})
+
+		app.ServeFiles("/assets", assetsBox)
 	}
 
 	return app

@@ -46,12 +46,8 @@
   name = "github.com/markbates/grift"
 
 [[constraint]]
-  name = "github.com/markbates/pop"
-  version = "4.0.0"
-
-[[constraint]]
-  name = "github.com/markbates/validate"
-  version = "1.0.0"
+  name = "github.com/gobuffalo/pop"
+  version = "4.0.5"
 
 [[constraint]]
   name = "github.com/pkg/errors"

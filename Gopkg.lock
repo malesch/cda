@@ -233,18 +233,6 @@
   revision = "3e32b42850a9f09fac18a6c09bbd04325f51f732"
 
 [[projects]]
-  name = "github.com/markbates/pop"
-  packages = [
-    ".",
-    "associations",
-    "columns",
-    "fizz",
-    "fizz/translators"
-  ]
-  revision = "f230643ae0f8fa01e9444c2fb857ba1f1a78eb1f"
-  version = "v4.0.0"
-
-[[projects]]
   name = "github.com/markbates/refresh"
   packages = [
     "refresh",
@@ -257,15 +245,6 @@
   name = "github.com/markbates/sigtx"
   packages = ["."]
   revision = "daa2e5f08161c569ca3d938d70750ccd038daf16"
-  version = "v1.0.0"
-
-[[projects]]
-  name = "github.com/markbates/validate"
-  packages = [
-    ".",
-    "validators"
-  ]
-  revision = "cd8cc34c703420d6b084fbbfd5085e8e71c5b830"
   version = "v1.0.0"
 
 [[projects]]
@@ -379,11 +358,6 @@
   packages = ["."]
   revision = "55d61fa8aa702f59229e6cff85793c22e580eaf5"
   version = "v1.5.1"
-
-[[projects]]
-  name = "github.com/satori/go.uuid"
-  packages = ["."]
-  revision = "36e9d2ebbde5e3f13ab2e25625fd453271d6522e"
 
 [[projects]]
   branch = "master"
@@ -528,6 +502,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a36fe60d5056832b3e097ea8d81393c0a2de3be7a768ddc594711f2d31b04580"
+  inputs-digest = "2031b9bf2f76490d1f61776123b244a9ee9c21de542e9bc4497822de9cc2ae69"
   solver-name = "gps-cdcl"
   solver-version = 1
