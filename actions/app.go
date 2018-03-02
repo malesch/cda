@@ -67,7 +67,7 @@ func App() *buffalo.App {
 		app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
 		app.Resource("/systems", SystemsResource{&buffalo.BaseResource{}})
 
-		app.ServeFiles("/assets", assetsBox)
+		app.ServeFiles("/", assetsBox)
 	}
 
 	return app
