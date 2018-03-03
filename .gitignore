@@ -12,3 +12,4 @@ cda
 .vscode/
 .grifter/
 .env
+database.yml
