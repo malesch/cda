@@ -1,0 +1,24 @@
+development:
+  dialect: postgres
+  database: cda_development
+  user: cda
+  password: cda
+  host: 127.0.0.1
+  pool: 5
+
+test:
+  dialect: postgres
+  database: cda_test
+  user: cda
+  password: cda
+  host: 127.0.0.1
+  pool: 5
+
+production:
+  dialect: postgres
+  database: cda_production
+  user: cda
+  password: cda
+  host: 127.0.0.1
+  pool: 5
+

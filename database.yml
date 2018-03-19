@@ -1,11 +1,1 @@
-development:
-  dialect: "sqlite3"
-  database: /Users/malex/dev/gocode/src/github.com/cdacontrol/cda/cda_development.sqlite
-
-test:
-  dialect: "sqlite3"
-  database: /Users/malex/dev/gocode/src/github.com/cdacontrol/cda/cda_test.sqlite
-
-production:
-  dialect: "sqlite3"
-  database: /Users/malex/dev/gocode/src/github.com/cdacontrol/cda/cda_production.sqlite
+database-postgres.yml

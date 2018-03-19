@@ -11,3 +11,5 @@ public/assets/
 cda
 .vscode/
 media/
+database.yml
+migrations/schema.sql
