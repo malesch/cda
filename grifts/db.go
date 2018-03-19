@@ -2,8 +2,8 @@ package grifts
 
 import (
 	"github.com/cdacontrol/cda/models"
+	"github.com/gobuffalo/pop"
 	"github.com/markbates/grift/grift"
-	"github.com/markbates/pop"
 	"github.com/pkg/errors"
 )
 

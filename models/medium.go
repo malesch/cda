@@ -9,10 +9,10 @@ import (
 	"time"
 
 	"github.com/gobuffalo/envy"
-	"github.com/markbates/pop"
-	"github.com/markbates/pop/nulls"
-	"github.com/markbates/validate"
-	"github.com/satori/go.uuid"
+	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/nulls"
+	"github.com/gobuffalo/uuid"
+	"github.com/gobuffalo/validate"
 )
 
 type Medium struct {

@@ -3,7 +3,7 @@ package actions
 import (
 	"github.com/cdacontrol/cda/models"
 	"github.com/gobuffalo/buffalo"
-	"github.com/markbates/pop"
+	"github.com/gobuffalo/pop"
 	"github.com/pkg/errors"
 )
 

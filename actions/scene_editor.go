@@ -3,8 +3,8 @@ package actions
 import (
 	"github.com/cdacontrol/cda/models"
 	"github.com/gobuffalo/buffalo"
-	"github.com/markbates/pop"
-	uuid "github.com/satori/go.uuid"
+	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/uuid"
 )
 
 // SceneEditorHandler ...
