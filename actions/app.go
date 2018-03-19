@@ -70,8 +70,20 @@ func App() *buffalo.App {
 		app.Resource("/events", EventsResource{&buffalo.BaseResource{}})
 		app.Resource("/props", PropsResource{&buffalo.BaseResource{}})
 
-		app.GET("/scene/editor/{scene_id}", SceneEditorHandler)
-		app.GET("/scene/data/{scene_id}", SceneDataHandler)
+		app.GET("/scene/editor/{scene}", SceneEditorHandler)
+		// TODO: Add SceneData resource
+		app.GET("/scene/data/{scene}", SceneGetHandler)
+		app.POST("/scene/data", SceneCreateHandler)
+		app.PUT("/scene/data/{scene}", SceneUpdateHandler)
+		app.DELETE("/scene/data/{scene}", SceneDeleteHandler)
+		// Device end-points
+		app.POST("/scene/data/{scene}/device", SceneDeviceCreateHandler)
+		app.PUT("/scene/data/{scene}/device/{device}", SceneDeviceUpdateHandler)
+		app.DELETE("/scene/data/{scene}/device/{device}", SceneDeviceDeleteHandler)
+		// Event end-points
+		app.POST("/scene/data/{scene}/event", SceneEventCreateHandler)
+		app.PUT("/scene/data/{scene}/event/{event}", SceneEventUpdateHandler)
+		app.DELETE("/scene/data/{scene}/event/{event}", SceneEventDeleteHandler)
 	}
 
 	return app

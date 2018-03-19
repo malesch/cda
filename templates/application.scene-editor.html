@@ -17,12 +17,6 @@
     <%= javascriptTag("application.js") %>
     <%= javascriptTag("vis-timeline-graph2d.min.js") %>
     <%= javascriptTag("scene-editor.js") %>
-    <script>
-      $(document).ready(function () {
-        var container = $('#scene-editor .timeline').get(0);
-        var editor = new SceneEditor(container, "<%= scene_id %>");
-        editor.init();
-      });
-    </script>
+
   </body>
 </html>
