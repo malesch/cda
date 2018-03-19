@@ -16,7 +16,7 @@ type Scene struct {
 	CreatedAt time.Time `json:"-" db:"created_at"`
 	UpdatedAt time.Time `json:"-" db:"updated_at"`
 	Name      string    `json:"name" db:"name"`
-	MediumID  uuid.UUID `json:"-" db:"mediumID"`
+	MediumID  uuid.UUID `json:"-" db:"medium_id"`
 }
 
 // String is not required by pop and may be deleted
@@ -55,38 +55,41 @@ func (s *Scene) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 }
 
 // SceneEvents returns the scene events as a map events keyed by devices
+// TODO: Refactor query (-> left join query), inefficient implementation!
 func SceneEvents(tx *pop.Connection, scene *Scene) (map[Device][]Event, error) {
 	events := []Event{}
 
-	err := tx.Where("sceneID=?", scene.ID).All(&events)
+	err := tx.Where("scene_id=?", scene.ID).All(&events)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
 
-	// TODO:
-	// HACK solution for stripping away attributes to be ignored for key
-	// comparison e.g. CreatedAt or UpdatedAt. Better or idiomatic solution?
 	res := make(map[Device][]Event)
-	for _, event := range events {
-		device := Device{}
-		err := tx.Find(&device, event.DeviceID)
-		if err != nil {
-			return nil, errors.WithStack(err)
-		}
 
-		props := Props{}
-		err = tx.Where("eventID=?", event.ID).All(&props)
-		if err != nil {
-			return nil, errors.WithStack(err)
-		}
-		event.Props = props
+	devices := []Device{}
+	err = tx.All(&devices)
 
-		deviceKey := Device{
-			ID:   device.ID,
-			Name: device.Name,
-			Type: device.Type,
-		}
-		res[deviceKey] = append(res[deviceKey], event)
+	if err != nil {
+		return nil, errors.WithStack(err)
 	}
+	for _, device := range devices {
+		events := []Event{}
+		err = tx.Where("device_id=?", device.ID).All(&events)
+		if err != nil {
+			return nil, errors.WithStack(err)
+		}
+
+		for idx, event := range events {
+			props := Props{}
+			err = tx.Where("event_id=?", event.ID).All(&props)
+			if err != nil {
+				return nil, errors.WithStack(err)
+			}
+			events[idx].Props = props
+		}
+
+		res[device] = events
+	}
+
 	return res, nil
 }

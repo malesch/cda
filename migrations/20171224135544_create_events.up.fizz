@@ -1,7 +1,7 @@
 create_table("events", func(t) {
 	t.Column("id", "uuid", {"primary": true})
-	t.Column("sceneID", "uuid", {})
-	t.Column("deviceID", "uuid", {})
-	t.Column("start", "integer", {})
-	t.Column("end", "integer", {})
+	t.Column("scene_id", "uuid", {})
+	t.Column("device_id", "uuid", {})
+	t.Column("start_time", "integer", {})
+	t.Column("end_time", "integer", {})
 })

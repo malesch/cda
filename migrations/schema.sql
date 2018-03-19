@@ -54,10 +54,10 @@ ALTER TABLE public.devices OWNER TO cda;
 
 CREATE TABLE public.events (
     id uuid NOT NULL,
-    "sceneID" uuid NOT NULL,
-    "deviceID" uuid NOT NULL,
-    start integer NOT NULL,
-    "end" integer NOT NULL,
+    scene_id uuid NOT NULL,
+    device_id uuid NOT NULL,
+    start_time integer NOT NULL,
+    end_time integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -87,10 +87,9 @@ ALTER TABLE public.media OWNER TO cda;
 
 CREATE TABLE public.props (
     id uuid NOT NULL,
-    "eventID" uuid NOT NULL,
+    event_id uuid NOT NULL,
     name character varying(255) NOT NULL,
     value character varying(255) NOT NULL,
-    type character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -105,7 +104,7 @@ ALTER TABLE public.props OWNER TO cda;
 CREATE TABLE public.scenes (
     id uuid NOT NULL,
     name character varying(255) NOT NULL,
-    "mediumID" uuid NOT NULL,
+    medium_id uuid NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

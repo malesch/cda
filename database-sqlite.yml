@@ -9,4 +9,3 @@ test:
 production:
   dialect: "sqlite3"
   database: cda_production.sqlite
-

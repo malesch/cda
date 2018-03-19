@@ -1,6 +1,0 @@
-- id: "scene.created.success"
-  translation: "Scene was successfully created."
-- id: "scene.updated.success"
-  translation: "Scene was successfully updated."
-- id: "scene.destroyed.success"
-  translation: "Scene was successfully destroyed."

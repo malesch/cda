@@ -14,10 +14,9 @@ type Prop struct {
 	ID        uuid.UUID `json:"-" db:"id"`
 	CreatedAt time.Time `json:"-" db:"created_at"`
 	UpdatedAt time.Time `json:"-" db:"updated_at"`
-	EventID   uuid.UUID `json:"-" db:"eventID"`
+	EventID   uuid.UUID `json:"-" db:"event_id"`
 	Name      string    `json:"name" db:"name"`
 	Value     string    `json:"value" db:"value"`
-	Type      string    `json:"type" db:"type"`
 }
 
 // String is not required by pop and may be deleted
@@ -41,7 +40,6 @@ func (p *Prop) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
 		&validators.StringIsPresent{Field: p.Name, Name: "Name"},
 		&validators.StringIsPresent{Field: p.Value, Name: "Value"},
-		&validators.StringIsPresent{Field: p.Type, Name: "Type"},
 	), nil
 }
 
