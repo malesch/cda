@@ -4,8 +4,9 @@ development:
 
 test:
   dialect: "sqlite3"
-  database: cda/cda_test.sqlite
+  database: cda_test.sqlite
 
 production:
   dialect: "sqlite3"
   database: cda_production.sqlite
+
