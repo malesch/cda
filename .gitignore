@@ -12,4 +12,4 @@ cda
 .vscode/
 media/
 database.yml
-migrations/schema.sql
+/migrations/schema.sql
