@@ -48,6 +48,11 @@ module.exports = {
       [{
         from: "./assets",
         to: ""
+      },
+      {
+        from: "./node_modules/admin-lte/dist/img/**",
+        to: "images",
+        flatten: true
       }], {
         copyUnmodified: true,
         ignore: ["css/**", "js/**"]
@@ -95,6 +100,10 @@ module.exports = {
       {
         test: /\.go$/,
         use: "gopherjs-loader"
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: "file-loader"
       }
     ]
   }
