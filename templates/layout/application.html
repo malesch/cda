@@ -11,61 +11,37 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
 </head>
 
-<body class="hold-transition sidebar-collapse">
+<body class="sidebar-mini skin-blue sidebar-collapse">
   <div class="wrapper">
-    <header class="main-header">
-      <!-- Header Navbar -->
-      <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-
-            <%= if (current_user) { %>
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="/assets/images/frog.jpeg" class="user-image" alt="User Image">
-                <span class="hidden-xs"><%= current_user.Name %></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="user-header">
-                  <img src="/assets/images/frog.jpeg" class="img-circle" alt="User Image">
-                  <p>
-                    <%= current_user.Name %>
-                    <small><%= current_user.RoleID %></small>
-                  </p>
-                </li>
-                <!--
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
+    <aside id="menu" class="main-sidebar">
+      <section class="sidebar">
+        <ul class="sidebar-menu tree" data-widget="tree">
+          <%= if (current_user) { %>
+          <li class="active treeview menu-open">
+              <div class="user-panel">
+                  <div class="pull-left image">
+                    <img src="/assets/images/frog.jpeg" class="img-circle" alt="User Image">
                   </div>
-                </li>
-                -->
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <div class="pull-left info">
+                    <p><%= current_user.Name %></p>
+                    <p><%= current_user.RoleID %></p>
                   </div>
-                  <div class="pull-right">
-                    <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <% } %>
-          </ul>
-        </div>
-      </nav>
-    </header>
+                </div>
+            <ul class="treeview-menu" style="">
+              <li><a href="index.html">Profile</a></li>
+              <li><a href="index2.html">Logout</a></li>
+            </ul>
+         </li>    
+         <% } %>
+         <li class="header">Menu</li>
+         <li><a href="/scenes"><i class="fa fa-table"></i> <span>Scenes</span></a></li>
+          <li><a href="/media"><i class="fa fa-image"></i> <span>Media</span></a></li>
+          <li><a href="/devices"><i class="fa fa-database"></i> <span>Devices</span></a></li>
+          <li><a href="/users"><i class="fa fa-user"></i> <span>Users</span></a></li>
+          <li><a href="/systems"><i class="fa fa-gear"></i> <span>System</span></a></li>
+        </ul>
+      </section>
+    </aside>
 
     <div class="content-wrapper">
       <section class="content container">
