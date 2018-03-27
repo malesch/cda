@@ -1,8 +1,11 @@
-<h1>Sign In</h1>
 
+<div class="login-box">
+  <h1>Sign In</h1>
 
-<%= form_for(user, {action: loginPath()}) { %>
-  <%= f.InputTag("Name") %>
-  <%= f.InputTag("Password", {type: "password"}) %>
-  <button class="btn btn-success">Sign In!</button>
-<% } %>
+  <%= form_for(user, {action: loginPath()}) { %>
+    <%= f.InputTag("Name") %>
+    <%= f.InputTag("Password", {type: "password"}) %>
+    <button class="btn btn-success">Sign In!</button>
+  <% } %>
+
+</div>

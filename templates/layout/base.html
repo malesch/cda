@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Buffalo - Cda</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <%= stylesheetTag("application.css") %>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="<%= authenticity_token %>" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+</head>
+
+<body class="hold-transition sidebar-collapse">
+    
+  <div class="wrapper">
+    <div class="content-wrapper">
+      <section class="content container">
+        <%= partial("flash.html") %>
+          <%= yield %>
+      </section>
+    </div>
+
+    <%= javascriptTag("application.js") %>
+
+  </div>
+</body>
+
+</html>

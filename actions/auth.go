@@ -16,7 +16,7 @@ import (
 // AuthNew load the signIn page if not logged in or forward to index
 func AuthNew(c buffalo.Context) error {
 	c.Set("user", models.User{})
-	return c.Render(200, r.HTML("login.html"))
+	return c.Render(200, r.HTML("login.html", "layout/base.html"))
 }
 
 // AuthCreate attempts to log the user in with an existing account.

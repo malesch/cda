@@ -11,7 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-collapse">
   <div class="wrapper">
     <header class="main-header">
       <!-- Header Navbar -->
@@ -20,18 +20,19 @@
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
 
+            <%= if (current_user) { %>
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="/assets/images/frog.jpeg" class="user-image" alt="User Image">
-                <span class="hidden-xs">Flitz Flosch</span>
+                <span class="hidden-xs"><%= current_user.Name %></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
                   <img src="/assets/images/frog.jpeg" class="img-circle" alt="User Image">
                   <p>
-                      Flitz Flosch - Developer
-                    <small>Administrator</small>
+                    <%= current_user.Name %>
+                    <small><%= current_user.RoleID %></small>
                   </p>
                 </li>
                 <!--
@@ -55,29 +56,18 @@
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
             </li>
+            <% } %>
           </ul>
         </div>
       </nav>
     </header>
 
     <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Page Header
-          <small>Optional description</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-          <li class="active">Here</li>
-        </ol>
-      </section>
-
       <section class="content container">
         <%= partial("flash.html") %>
           <%= yield %>
@@ -87,10 +77,10 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Anything you want
+          Version 1.0
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 <a href="#">CdA</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; Grorymab AG 2018 <a href="https://c-da.ch/">CdA</a>.</strong> All rights reserved.
     </footer>
 
     <%= javascriptTag("application.js") %>
