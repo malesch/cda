@@ -60,14 +60,22 @@ func App() *buffalo.App {
 		app.Use(SetCurrentUser)
 		app.Use(SetSelectionData)
 
+		adminGroup := app.Group("/admin")
+		adminGroup.Use(AdminRequired)
+
 		app.GET("/", HomeHandler)
 		app.GET("/login", AuthNew)
 		app.POST("/login", AuthCreate)
 		app.DELETE("/logout", AuthDestroy)
 		app.GET("/logout", AuthDestroy)
 
-		app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
-		app.Resource("/systems", SystemsResource{&buffalo.BaseResource{}})
+		userResource := &UsersResource{&buffalo.BaseResource{}}
+		userApp := app.Resource("/users", userResource)
+		userApp.Use(LoginRequired)
+
+		systemResource := &UsersResource{&buffalo.BaseResource{}}
+		systemApp := app.Resource("/systems", systemResource)
+		systemApp.Use(LoginRequired)
 
 		app.ServeFiles("/", assetsBox)
 	}

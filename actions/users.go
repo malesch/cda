@@ -197,3 +197,27 @@ func SetSelectionData(next buffalo.Handler) buffalo.Handler {
 		return next(c)
 	}
 }
+
+// AdminRequired requires a user to be logged in and to be an admin before accessing a route.
+func AdminRequired(next buffalo.Handler) buffalo.Handler {
+	return func(c buffalo.Context) error {
+		user, ok := c.Value("current_user").(*models.User)
+		if ok && user.RoleID == 2 {
+			return next(c)
+		}
+		c.Flash().Add("danger", "You must be an Admin to view this page.")
+		return c.Redirect(302, "/")
+	}
+}
+
+// LoginRequired requires an authenticated user
+func LoginRequired(next buffalo.Handler) buffalo.Handler {
+	return func(c buffalo.Context) error {
+		_, ok := c.Value("current_user").(*models.User)
+		if ok {
+			return next(c)
+		}
+		c.Flash().Add("danger", "Please log in.")
+		return c.Redirect(302, "/login")
+	}
+}
