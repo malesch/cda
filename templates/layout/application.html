@@ -22,7 +22,7 @@
             </div>
             <div class="pull-left info">
               <p><%= current_user.Name %></p>
-              <p><%= current_user.RoleID %></p>
+              <p><%= t("role."+roles[current_user.RoleID]) %></p>
             </div>
         </div>
         <div class="user-panel user-action">

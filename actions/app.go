@@ -49,7 +49,6 @@ func App() *buffalo.App {
 		//  c.Value("tx").(*pop.PopTransaction)
 		// Remove to disable this.
 		app.Use(middleware.PopTransaction(models.DB))
-		app.Use(SetCurrentUser)
 
 		// Setup and use translations:
 		var err error
@@ -57,6 +56,9 @@ func App() *buffalo.App {
 			app.Stop(err)
 		}
 		app.Use(T.Middleware())
+
+		app.Use(SetCurrentUser)
+		app.Use(SetSelectionData)
 
 		app.GET("/", HomeHandler)
 		app.GET("/login", AuthNew)

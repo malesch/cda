@@ -36,7 +36,6 @@ func (v UsersResource) List(c buffalo.Context) error {
 
 	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/index.html"))
 }
@@ -53,7 +52,6 @@ func (v UsersResource) Show(c buffalo.Context) error {
 	}
 
 	c.Set("user", user)
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/show.html"))
 }
@@ -62,7 +60,6 @@ func (v UsersResource) Show(c buffalo.Context) error {
 // This function is mapped to the path GET /users/new
 func (v UsersResource) New(c buffalo.Context) error {
 	c.Set("user", &models.User{})
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/new.html"))
 }
@@ -106,7 +103,6 @@ func (v UsersResource) Edit(c buffalo.Context) error {
 	}
 
 	c.Set("user", user)
-	prepareSelectLists(c)
 
 	return c.Render(200, r.HTML("users/edit.html"))
 }
@@ -161,13 +157,6 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 	return c.Redirect(302, "/users")
 }
 
-func prepareSelectLists(c buffalo.Context) {
-	c.Set("locales", models.Locales)
-	c.Set("selectLocales", LocalizeSelect(c, models.SelectLocales()))
-	c.Set("roles", models.Roles)
-	c.Set("selectRoles", LocalizeSelect(c, models.SelectRoles()))
-}
-
 // SetCurrentUser attempts to find a user based on the current_user_id
 // in the session. If one is found it is set on the context.
 func SetCurrentUser(next buffalo.Handler) buffalo.Handler {
@@ -184,6 +173,27 @@ func SetCurrentUser(next buffalo.Handler) buffalo.Handler {
 			}
 			c.Set("current_user", u)
 		}
+		return next(c)
+	}
+}
+
+func selectValueLookupByLocalizedName(c buffalo.Context, selectMap map[string]int) map[string]int {
+	locSelectMap := make(map[string]int)
+	for name, id := range selectMap {
+		locName := T.Translate(c, name)
+		locSelectMap[locName] = id
+	}
+	return locSelectMap
+}
+
+// SetSelectionData stores in the context the static selection and lookup data
+func SetSelectionData(next buffalo.Handler) buffalo.Handler {
+	return func(c buffalo.Context) error {
+		c.Set("locales", models.Locales)
+		c.Set("selectLocales", selectValueLookupByLocalizedName(c, models.SelectLocales()))
+		c.Set("roles", models.Roles)
+		c.Set("selectRoles", selectValueLookupByLocalizedName(c, models.SelectRoles()))
+
 		return next(c)
 	}
 }
