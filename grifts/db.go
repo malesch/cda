@@ -1,7 +1,7 @@
 package grifts
 
 import (
-	"github.com/cdacontrol/cda/models"
+	"github.com/malesch/cda/models"
 	"github.com/markbates/grift/grift"
 )
 

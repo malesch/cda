@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/cdacontrol/cda/actions"
+	"github.com/malesch/cda/actions"
 )
 
 func main() {

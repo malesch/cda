@@ -1,8 +1,8 @@
 package grifts
 
 import (
-	"github.com/cdacontrol/cda/actions"
 	"github.com/gobuffalo/buffalo"
+	"github.com/malesch/cda/actions"
 )
 
 func init() {

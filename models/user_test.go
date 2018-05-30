@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/cdacontrol/cda/models"
+	"github.com/malesch/cda/models"
 )
 
 func (ms *ModelSuite) Test_User_Create() {

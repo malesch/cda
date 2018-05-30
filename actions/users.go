@@ -3,9 +3,9 @@ package actions
 import (
 	"database/sql"
 
-	"github.com/cdacontrol/cda/models"
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
+	"github.com/malesch/cda/models"
 	"github.com/pkg/errors"
 )
 

@@ -2,8 +2,8 @@
 # https://docs.docker.com/engine/userguide/eng-image/multistage-build/
 FROM gobuffalo/buffalo:v0.10.0 as builder
 
-RUN mkdir -p $GOPATH/src/github.com/cdacontrol/cda
-WORKDIR $GOPATH/src/github.com/cdacontrol/cda
+RUN mkdir -p $GOPATH/src/github.com/malesch/cda
+WORKDIR $GOPATH/src/github.com/malesch/cda
 
 # this will cache the npm install step, unless package.json changes
 ADD package.json .
