@@ -1,6 +1,6 @@
-# CdA - Centre d’ambiance frontend
+# CdA - Centre d’ambiance frontend prototype
 
-This application is the frontend for the CdA controller unit.
+This application is an experimental frontend for the CdA controller unit.
 
 ## Database Setup
 
