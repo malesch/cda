@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h1>Scene#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= scenesPath() %>" class="btn btn-info">Back to all Scenes</a></li>
+  <li><a href="<%= editScenePath({ scene_id: scene.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= scenePath({ scene_id: scene.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>Name</strong>: <%= scene.Name %>
+</p>

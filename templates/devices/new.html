@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>New Device</h1>
+</div>
+
+<%= form_for(device, {action: devicesPath(), method: "POST"}) { %>
+  <%= partial("devices/form.html") %>
+  <a href="<%= devicesPath() %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

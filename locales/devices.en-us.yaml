@@ -1,0 +1,6 @@
+- id: "device.created.success"
+  translation: "Device was successfully created."
+- id: "device.updated.success"
+  translation: "Device was successfully updated."
+- id: "device.destroyed.success"
+  translation: "Device was successfully destroyed."

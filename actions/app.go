@@ -77,6 +77,9 @@ func App() *buffalo.App {
 		systemApp := app.Resource("/systems", systemResource)
 		systemApp.Use(LoginRequired)
 
+		app.Resource("/devices", DevicesResource{})
+		app.Resource("/scenes", ScenesResource{})
+		app.Resource("/events", EventsResource{})
 		app.ServeFiles("/", assetsBox)
 	}
 

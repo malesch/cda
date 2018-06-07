@@ -34,6 +34,68 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: devices; Type: TABLE; Schema: public; Owner: cda
+--
+
+CREATE TABLE public.devices (
+    id uuid NOT NULL,
+    name character varying(255) NOT NULL,
+    type character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.devices OWNER TO cda;
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: cda
+--
+
+CREATE TABLE public.events (
+    id uuid NOT NULL,
+    scene_id uuid NOT NULL,
+    device_id uuid NOT NULL,
+    start integer NOT NULL,
+    "end" integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.events OWNER TO cda;
+
+--
+-- Name: props; Type: TABLE; Schema: public; Owner: cda
+--
+
+CREATE TABLE public.props (
+    id uuid NOT NULL,
+    event_id uuid NOT NULL,
+    name character varying(255) NOT NULL,
+    value character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.props OWNER TO cda;
+
+--
+-- Name: scenes; Type: TABLE; Schema: public; Owner: cda
+--
+
+CREATE TABLE public.scenes (
+    id uuid NOT NULL,
+    name character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.scenes OWNER TO cda;
+
+--
 -- Name: schema_migration; Type: TABLE; Schema: public; Owner: cda
 --
 
@@ -76,6 +138,38 @@ CREATE TABLE public.users (
 
 
 ALTER TABLE public.users OWNER TO cda;
+
+--
+-- Name: devices devices_pkey; Type: CONSTRAINT; Schema: public; Owner: cda
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT devices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: cda
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: props props_pkey; Type: CONSTRAINT; Schema: public; Owner: cda
+--
+
+ALTER TABLE ONLY public.props
+    ADD CONSTRAINT props_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: scenes scenes_pkey; Type: CONSTRAINT; Schema: public; Owner: cda
+--
+
+ALTER TABLE ONLY public.scenes
+    ADD CONSTRAINT scenes_pkey PRIMARY KEY (id);
+
 
 --
 -- Name: systems systems_pkey; Type: CONSTRAINT; Schema: public; Owner: cda

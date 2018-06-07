@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Scenes</h1>
+</div>
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= newScenesPath() %>" class="btn btn-primary">Create New Scene</a></li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+  <th>Name</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (scene) in scenes { %>
+      <tr>
+      <td><%= scene.Name %></td>
+        <td>
+          <div class="pull-right">
+            <a href="<%= scenePath({ scene_id: scene.ID }) %>" class="btn btn-info">View</a>
+            <a href="<%= editScenePath({ scene_id: scene.ID }) %>" class="btn btn-warning">Edit</a>
+            <a href="<%= scenePath({ scene_id: scene.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>
