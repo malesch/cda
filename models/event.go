@@ -17,8 +17,8 @@ type Event struct {
 	SceneID   uuid.UUID `json:"-" db:"scene_id"`
 	Device    Device    `belongs_to:"device"`
 	DeviceID  uuid.UUID `json:"group" db:"device_id"`
-	Start     int       `json:"start" db:"start"`
-	End       int       `json:"end" db:"end"`
+	Start     int       `json:"start" db:"start_event"`
+	End       int       `json:"end" db:"end_event"`
 	Props     Props     `has_many:"props" json:"props" db:"-"`
 }
 

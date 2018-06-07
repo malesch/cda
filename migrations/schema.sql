@@ -56,8 +56,8 @@ CREATE TABLE public.events (
     id uuid NOT NULL,
     scene_id uuid NOT NULL,
     device_id uuid NOT NULL,
-    start integer NOT NULL,
-    "end" integer NOT NULL,
+    start_event integer NOT NULL,
+    end_event integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

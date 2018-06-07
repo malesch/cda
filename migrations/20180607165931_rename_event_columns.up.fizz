@@ -1,0 +1,2 @@
+rename_column("events", "start", "start_event")
+rename_column("events", "end", "end_event")
