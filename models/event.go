@@ -12,10 +12,10 @@ import (
 
 type Event struct {
 	ID        uuid.UUID `json:"id" db:"id"`
-	CreatedAt time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
-	SceneID   uuid.UUID `json:"scene_id" db:"scene_id"`
-	DeviceID  uuid.UUID `json:"device_id" db:"device_id"`
+	CreatedAt time.Time `json:"-" db:"created_at"`
+	UpdatedAt time.Time `json:"-" db:"updated_at"`
+	SceneID   uuid.UUID `json:"-" db:"scene_id"`
+	DeviceID  uuid.UUID `json:"group" db:"device_id"`
 	Start     int       `json:"start" db:"start"`
 	End       int       `json:"end" db:"end"`
 }

@@ -11,10 +11,10 @@ import (
 )
 
 type Prop struct {
-	ID        uuid.UUID `json:"id" db:"id"`
-	CreatedAt time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
-	EventID   uuid.UUID `json:"event_id" db:"event_id"`
+	ID        uuid.UUID `json:"-" db:"id"`
+	CreatedAt time.Time `json:"-" db:"created_at"`
+	UpdatedAt time.Time `json:"-" db:"updated_at"`
+	EventID   uuid.UUID `json:"-" db:"event_id"`
 	Name      string    `json:"name" db:"name"`
 	Value     string    `json:"value" db:"value"`
 }
