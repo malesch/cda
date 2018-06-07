@@ -15,6 +15,7 @@ type Scene struct {
 	CreatedAt time.Time `json:"-" db:"created_at"`
 	UpdatedAt time.Time `json:"-" db:"updated_at"`
 	Name      string    `json:"name" db:"name"`
+	Events    Events    `has_many:"events"`
 }
 
 // String is not required by pop and may be deleted

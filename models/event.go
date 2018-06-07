@@ -15,9 +15,11 @@ type Event struct {
 	CreatedAt time.Time `json:"-" db:"created_at"`
 	UpdatedAt time.Time `json:"-" db:"updated_at"`
 	SceneID   uuid.UUID `json:"-" db:"scene_id"`
+	Device    Device    `belongs_to:"device"`
 	DeviceID  uuid.UUID `json:"group" db:"device_id"`
 	Start     int       `json:"start" db:"start"`
 	End       int       `json:"end" db:"end"`
+	Props     Props     `has_many:"props" json:"props" db:"-"`
 }
 
 // String is not required by pop and may be deleted
